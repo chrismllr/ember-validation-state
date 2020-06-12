@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import validationState, { validate } from 'pulse-ui/decorators/form-validation';
+import validationState, { validate } from 'ember-validation-state';
 
 module('Unit | Decorator | formValidation', function (hooks) {
   setupRenderingTest(hooks);
