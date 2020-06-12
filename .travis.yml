@@ -36,14 +36,14 @@ jobs:
       name: "Tests"
       script:
         - npm run lint
-        - npm run test:ember
+        - npm run test:ember-compatibility
 
     - stage: "Additional Tests"
       name: "Floating Dependencies"
       install:
         - npm install --no-package-lock
       script:
-        - npm run test:ember
+        - npm run test:ember-compatibility
 
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
