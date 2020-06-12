@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-validation-decorator`
+* `cd ember-validation-state`
 * `npm install`
 
 ## Linting
