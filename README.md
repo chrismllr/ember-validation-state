@@ -1,6 +1,6 @@
 # `ember-validation-state`
 
-Provides an Octane-ready decorator which can be used in conjunction with ember-validation validators, to provide form field validation state.
+An Octane-ready decorator which provides form-field validation state by utilizing [ember-validators](https://github.com/offirgolan/ember-validators) validators.
 
 This addon takes heavy inspiration, and is based mostly upon, the work in [`ember-cp-validations`](https://github.com/offirgolan/ember-cp-validations), but with a more straightforward approach, and smaller API.
 
@@ -57,11 +57,9 @@ interface ValidationState {
 
 ## Contributing
 
-
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
 
 ## License
-
 
 This project is licensed under the [MIT License](LICENSE.md).
