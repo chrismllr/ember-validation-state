@@ -4,7 +4,7 @@
 
 An Octane-ready decorator which provides form-field validation state by utilizing [ember-validators](https://github.com/offirgolan/ember-validators) validators.
 
-This addon takes heavy inspiration, and is based mostly upon, the work in [`ember-cp-validations`](https://github.com/offirgolan/ember-cp-validations), but with a more straightforward approach, and smaller API.
+This addon takes heavy inspiration, and is based mostly upon, the work in [`ember-cp-validations`](https://github.com/offirgolan/ember-cp-validations), but takes the reactive decorator approach rather than the Mixin approach.
 
 
 ## Compatibility
