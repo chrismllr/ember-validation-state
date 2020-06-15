@@ -20,7 +20,7 @@ export default class ValidationMessages extends DIProvider {
   }
 
   getDescription(context) {
-    const descKey = `${this.prefix}${context.descriptionKey}`;
+    const descKey = `${this.prefix}.${context.descriptionKey}`;
 
     if (this.intl && this.intl.exists(descKey)) {
       return this.intl.t(descKey);

@@ -1,4 +1,4 @@
-import Messages from '../messages';
+import Messages from '../validators/messages';
 
 export function initialize(application) {
   application.register('validation-state:messages', Messages);
