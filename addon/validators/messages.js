@@ -1,4 +1,5 @@
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 import { warn } from '@ember/debug';
 import ValidatorsMessages from 'ember-validators/messages';
 import DIProvider from '../-private/di-provider';
@@ -19,7 +20,7 @@ export default class ValidationMessages extends DIProvider {
     }
   }
 
-  getDescription(context) {
+  @action getDescription(context) {
     const { prefix, intl } = this;
     const descKey = `${prefix}.${context.descriptionKey}`;
 
@@ -30,7 +31,7 @@ export default class ValidationMessages extends DIProvider {
     return context.description || ValidatorsMessages.defaultDescription;
   }
 
-  getMessageFor(type, context) {
+  @action getMessageFor(type, context) {
     const { prefix, intl, getDescription } = this;
     const messageKey = context.intlKey || type;
     const prefixedMessageKey = `${prefix}.${messageKey}`;
