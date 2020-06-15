@@ -1,6 +1,6 @@
+import { getOwner } from '@ember/application';
 import macro from 'macro-decorators';
 import { validate as _validate } from 'ember-validators';
-import EVMessages from 'ember-validators/messages';
 
 /**
  * provides a macro decorator for form field validation state.
@@ -35,6 +35,10 @@ import EVMessages from 'ember-validators/messages';
 export default function validationState(VALIDATOR_FNS) {
   return macro(function () {
     const attrState = {};
+
+    const messages = getOwner(this)
+      .lookup('validation-state:messages');
+
     let formValid = true;
 
     for (const key in VALIDATOR_FNS) {
@@ -44,7 +48,7 @@ export default function validationState(VALIDATOR_FNS) {
       };
 
       for (const validator of VALIDATOR_FNS[key]) {
-        const [computedValid, message] = validator(this[key]);
+        const [computedValid, message] = validator.apply(this, [this[key], messages]);
 
         if (computedValid) {
           continue;
@@ -76,20 +80,18 @@ export default function validationState(VALIDATOR_FNS) {
  * };
  *
  * @param {string} eventName - the name of the validator to use
- * @param {Object} context - the options hash passed along to ember-validators
- * @returns {Function<[isValid: boolean, message?: string]>}
+ * @param {ibject} context - the options hash passed along to ember-validators
+ * @returns {Function<*>: [isValid: boolean, message?: string]}
  */
 export function validate(eventName, context) {
-  return function (value) {
+  return function (value, messageSvc) {
     const validOrContext = _validate(eventName, value, context);
+
     if (typeof validOrContext === 'boolean') {
       return [true];
     }
 
-    const message = EVMessages.getMessageFor(validOrContext.type, {
-      description: 'This field',
-      ...context
-    });
+    const message = messageSvc.getMessageFor(validOrContext.type, context);
 
     return [false, message];
   };
