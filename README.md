@@ -56,7 +56,7 @@ interface ValidationState {
 }
 ```
 
-### Intl
+## Intl
 
 By default, if ember-intl is installed, validationState will attempt to look for a message for a specific validation error in your translations file. If no key is present, it will fall back to the ember-validators message.
 
@@ -68,7 +68,7 @@ errors:
   blank: '{description} cannot be blank'
 ```
 
-#### `intlKey`
+### `intlKey`
 Pass `intlKey` if you would like to use a different intl key. Will be prefixed with `errors.` for the translations file lookup
 
 ```yaml
@@ -86,7 +86,7 @@ const Validators = {
 };
 ```
 
-#### `descriptionKey`
+### `descriptionKey`
 Pass `descriptionKey` if you would like to internationalize the "description" of the field. Default is "This field". Will be prefixed with `errors.` for the translations file lookup
 
 ```yaml
@@ -108,7 +108,7 @@ const Validators = {
 ```
 
 
-### Custom validation methods
+## Custom validation methods
 
 Custom validation methods can be passed in the array for a specific key. They are passed along the Messages builder for convenience.
 
