@@ -1,4 +1,3 @@
-import EmberObject from '@ember/object';
 import { inject as service } from '@ember/service';
 import { warn } from '@ember/debug';
 import ValidatorsMessages from 'ember-validators/messages';
@@ -32,7 +31,7 @@ export default class ValidationMessages extends DIProvider {
 
   getMessageFor(type, context) {
     const { prefix } = this;
-    const intlKey = context.intlKey || type;
+    const messageKey = context.intlKey || type;
 
     context.description = this.getDescription(context);
 
@@ -42,8 +41,8 @@ export default class ValidationMessages extends DIProvider {
     }
 
     // Otherwise, look it up in intl
-    if (this.intl.exists(key)) {
-      return this.intl.t(`${prefix}.${intlKey}`, context);
+    if (this.intl.exists(messageKey)) {
+      return this.intl.t(`${prefix}.${messageKey}`, context);
     }
 
     warn(
