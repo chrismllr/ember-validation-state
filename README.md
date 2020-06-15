@@ -114,16 +114,13 @@ const Validators = {
 
 Custom validation methods can be passed in the array for a specific key. They are passed along the Messages builder for convenience.
 
-**Message builder definition**
-```ts
-interface MessagesSvc {
-  getMessageFor(type: string, context: Object): string
-}
-```
-
 **Validator signature**
 ```ts
-function Validator(value: T, MessagesSvc): [isValid: boolean, message: string]
+interface MessageBuilder {
+  getMessageFor(type: string, context: Object): string
+}
+
+type Validator = (value: any, messages: MessageBuilder) => [boolean, string];
 ```
 
 In action:
@@ -139,10 +136,10 @@ errors:
 import Component from '@glimmer/component';
 import validationState, { validate } from 'ember-validation-state';
 
-function passwordRegex(value, messagesSvc) {
+function passwordRegex(value, messages) {
   return [
     /W/.test(value),
-    messagesSvc.getMessageFor('password-regex')
+    messages.getMessageFor('password-regex')
   ];
 }
 
