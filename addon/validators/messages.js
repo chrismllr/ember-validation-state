@@ -20,32 +20,34 @@ export default class ValidationMessages extends DIProvider {
   }
 
   getDescription(context) {
-    const descKey = `${this.prefix}.${context.descriptionKey}`;
+    const { prefix, intl } = this;
+    const descKey = `${prefix}.${context.descriptionKey}`;
 
-    if (this.intl && this.intl.exists(descKey)) {
-      return this.intl.t(descKey);
+    if (intl && intl.exists(descKey)) {
+      return intl.t(descKey);
     }
 
     return context.description || ValidatorsMessages.defaultDescription;
   }
 
   getMessageFor(type, context) {
-    const { prefix } = this;
+    const { prefix, intl, getDescription } = this;
     const messageKey = context.intlKey || type;
+    const prefixedMessageKey = `${prefix}.${messageKey}`;
 
     const ctx = {
       ...context,
-      description: this.getDescription(context)
+      description: getDescription(context)
     };
 
     // if ember-intl addon is not installed, call the validators method
-    if (!this.intl) {
+    if (!intl) {
       return ValidatorsMessages.getMessageFor(type, ctx);
     }
 
     // Otherwise, look it up in intl
-    if (this.intl.exists(messageKey)) {
-      return this.intl.t(`${prefix}.${messageKey}`, ctx);
+    if (intl.exists(prefixedMessageKey)) {
+      return intl.t(prefixedMessageKey, ctx);
     }
 
     warn(
@@ -53,6 +55,7 @@ export default class ValidationMessages extends DIProvider {
       { id: 'validation-state.messages.not-defined-intl' }
     );
 
+    // Fall back to root getMessageFor if user has not defined an intl key for the current type
     return ValidatorsMessages.getMessageFor(type, ctx);
   }
 }
