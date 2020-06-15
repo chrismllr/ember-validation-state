@@ -1,6 +1,6 @@
 # `ember-validation-state`
 
-![](https://travis-ci.org/chrismllr/ember-validation-state.svg?branch=master)
+[![Build Status](https://travis-ci.org/chrismllr/ember-validation-state.svg?branch=master)](https://travis-ci.org/chrismllr/ember-validation-state)
 
 An Octane-ready decorator which provides form-field validation state by utilizing [ember-validators](https://github.com/offirgolan/ember-validators) validators.
 
