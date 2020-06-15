@@ -29,7 +29,7 @@ import { validate as _validate } from 'ember-validators';
  * @property {boolean} ValidationState.attrs[propertyName].isValid
  *
  * @export
- * @param {Function[]} validatorFunctions - array of `validate` fns
+ * @param {function[]} validatorFunctions - array of `validate` fns
  * @returns {ValidationState}
  */
 export default function validationState(VALIDATOR_FNS) {

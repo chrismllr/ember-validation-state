@@ -117,7 +117,7 @@ Custom validation methods can be passed in the array for a specific key. They ar
 **Validator signature**
 ```ts
 interface MessageBuilder {
-  getMessageFor(type: string, context: Object): string
+  getMessageFor(type: string, context: object): string
 }
 
 type Validator = (value: any, messages: MessageBuilder) => [boolean, string];
