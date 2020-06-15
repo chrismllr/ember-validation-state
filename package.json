@@ -13,6 +13,7 @@
     "test": "tests"
   },
   "scripts": {
+    "pre-commit": "lint-staged",
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
@@ -21,6 +22,16 @@
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn lint:js --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "ember-auto-import": "^1.5.3",
@@ -53,6 +64,8 @@
     "eslint": "^6.8.0",
     "eslint-plugin-ember": "^8.4.0",
     "eslint-plugin-node": "^11.1.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.10",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
     "qunit-dom": "^1.2.0"
@@ -65,5 +78,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "volta": {
+    "node": "12.18.0",
+    "yarn": "1.22.4"
   }
 }
