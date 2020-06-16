@@ -69,8 +69,8 @@ module('Integration | Decorator | formValidation', function (hooks) {
     assert.equal(svc.validState.attrs.email.isValid, true);
   });
 
-  module('intl messaging', function(intlHooks) {
-    intlHooks.beforeEach(function() {
+  module('intl messaging', function (intlHooks) {
+    intlHooks.beforeEach(function () {
       this.setup = (validations, assert) => {
         class IntlSvc extends Service {
           exists(key) {
@@ -93,7 +93,7 @@ module('Integration | Decorator | formValidation', function (hooks) {
         this.owner.register('service:validated', ValidatedService);
 
         return this.owner.lookup('service:validated');
-      }
+      };
     });
 
     test('Looks up via intl by default', function (assert) {

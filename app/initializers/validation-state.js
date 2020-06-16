@@ -1,1 +1,4 @@
-export { default, initialize } from 'ember-validation-state/initializers/validation-state';
+export {
+  default,
+  initialize
+} from 'ember-validation-state/initializers/validation-state';
