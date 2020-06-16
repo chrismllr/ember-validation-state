@@ -36,8 +36,7 @@ export default function validationState(VALIDATOR_FNS) {
   return macro(function () {
     const attrState = {};
 
-    const messages = getOwner(this)
-      .lookup('validation-state:messages');
+    const messages = getOwner(this).lookup('validation-state:messages');
 
     let formValid = true;
 
@@ -48,7 +47,10 @@ export default function validationState(VALIDATOR_FNS) {
       };
 
       for (const validator of VALIDATOR_FNS[key]) {
-        const [computedValid, message] = validator.apply(this, [this[key], messages]);
+        const [computedValid, message] = validator.apply(this, [
+          this[key],
+          messages
+        ]);
 
         if (computedValid) {
           continue;
