@@ -21,10 +21,10 @@ import { validate as _validate } from 'ember-validators';
  * }
  *
  *
- * @typedef {Object} ValidationState
+ * @typedef {object} ValidationState
  * @property {boolean} ValidationState.isValid
- * @property {Object} ValidationState.attrs
- * @property {Object} ValidationState.attrs[propertyName]
+ * @property {object} ValidationState.attrs
+ * @property {object} ValidationState.attrs[propertyName]
  * @property {string[]} ValidationState.attrs[propertyName].messages
  * @property {boolean} ValidationState.attrs[propertyName].isValid
  *
@@ -80,8 +80,8 @@ export default function validationState(VALIDATOR_FNS) {
  * };
  *
  * @param {string} eventName - the name of the validator to use
- * @param {ibject} context - the options hash passed along to ember-validators
- * @returns {Function<*>: [isValid: boolean, message?: string]}
+ * @param {object} context - the options hash passed along to ember-validators
+ * @returns {function<*, MessageBuilder>: [isValid: boolean, message?: string]}
  */
 export function validate(eventName, context) {
   return function (value, messageSvc) {
