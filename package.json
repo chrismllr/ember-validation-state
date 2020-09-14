@@ -36,13 +36,17 @@
   },
   "release-it": {
     "git": {
-      "commitMessage": "chore: release v${version}"
+      "commitMessage": "chore: release v${version}",
+      "changelog": "npx auto-changelog --stdout --commit-limit true -u --template https://raw.githubusercontent.com/release-it/release-it/master/templates/changelog-compact.hbs"
     },
     "npm": {
       "publish": false
     },
     "github": {
       "release": true
+    },
+    "hooks": {
+      "after:bump": "npx auto-changelog -p --commit-limit true --hide-credit true"
     }
   },
   "dependencies": {
