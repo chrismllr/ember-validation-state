@@ -41,23 +41,47 @@ class MyForm extends Component {
 }
 ```
 
-### ValidationState type definition
+```hbs
+<input value={{this.username}} />
 
-```ts
-interface AttributeValidation {
-  messages: string[];
-  isValid: boolean;
-}
+{{#unless this.formValidState.attrs.username.isValid}}
+  {{#each this.formValidState.attrs.username.messages as |msg|}}
+    <p>{{msg}}</p>
+  {{/each}}
+{{/unless}}
+```
 
-interface Attrs {
-  [propertyName: string]: AttributeValidation;
-}
+You can also pass a "thunk" to the `validationState` decorator, for lazy initialization of your Validators:
 
-interface ValidationState {
-  isValid: boolean;
-  attrs: Attrs
+```js
+import Component from '@glimmer/component';
+import validationState, { validate } from 'ember-validation-state';
+
+const Validators = {
+  username: [validate('presence', { presence: true })],
+  password: [validate('length', { min: 6 })]
+};
+
+class MyForm extends Component {
+  @tracked username = null;
+  @tracked password = null;
+
+  @validationState((component) => component.limitedValidators) validationState;
+
+  get limitedValidators() {
+    if (!this.args.username) {
+      return {
+        password: Validators['password']
+      };
+    }
+  }
 }
 ```
+
+### ValidationState definition
+
+Please refer to the types in [`index.d.ts`](./index.d.ts) for full typescript type definitions.
+
 
 ## Intl
 
@@ -159,6 +183,31 @@ class MyForm extends Component {
   @validationState(Validators) validationState;
 }
 ```
+
+## Usage with Typescript
+
+This package, although not yet rewritten in Typescript, is fully compatible and exports its own types.<br>
+
+To have full typings support of the property initialized by `validationState`, utilize the `ValidationState` type:
+
+```ts
+import validationState, {
+  validate,
+  ValidationState,
+} from 'ember-validation-state';
+
+const AttrValidators = {
+  name: [validate('presence', { presence: true })],
+  description: [validate('presence', { presence: true })],
+};
+
+export default class {
+  @validationState(AttrValidators)
+  declare formValidState: ValidationState<typeof AttrValidators>;
+}
+```
+
+Utilizing the generic argument `typeof AttrValidators` provides autocomplete for the `formValidState.attrs` hash.
 
 ## Contributing
 

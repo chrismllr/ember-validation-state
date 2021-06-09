@@ -1,4 +1,5 @@
 import { getOwner } from '@ember/application';
+import { typeOf } from '@ember/utils';
 import macro from 'macro-decorators';
 import { validate as _validate } from 'ember-validators';
 
@@ -34,19 +35,25 @@ import { validate as _validate } from 'ember-validators';
  */
 export default function validationState(VALIDATOR_FNS) {
   return macro(function () {
+    let validatorFns = VALIDATOR_FNS;
+
+    if (typeOf(VALIDATOR_FNS) === 'function') {
+      validatorFns = VALIDATOR_FNS(this);
+    }
+
     const attrState = {};
 
     const messages = getOwner(this).lookup('validation-state:messages');
 
     let formValid = true;
 
-    for (const key in VALIDATOR_FNS) {
+    for (const key in validatorFns) {
       attrState[key] = {
         messages: [],
         isValid: true
       };
 
-      for (const validator of VALIDATOR_FNS[key]) {
+      for (const validator of validatorFns[key]) {
         const [computedValid, message] = validator.apply(this, [
           this[key],
           messages
