@@ -2,24 +2,28 @@ import Application from '@ember/application';
 
 import { initialize } from 'dummy/initializers/validation-state';
 import { module, test } from 'qunit';
+import Resolver from 'ember-resolver';
 import { run } from '@ember/runloop';
 
 module('Unit | Initializer | validation-state', function (hooks) {
   hooks.beforeEach(function () {
-    this.TestApplication = Application.extend();
+    this.TestApplication = class TestApplication extends Application {};
     this.TestApplication.initializer({
       name: 'initializer under test',
       initialize
     });
 
-    this.application = this.TestApplication.create({ autoboot: false });
+    this.application = this.TestApplication.create({
+      autoboot: false,
+      Resolver
+    });
   });
 
   hooks.afterEach(function () {
     run(this.application, 'destroy');
   });
 
-  // Replace this with your real tests.
+  // TODO: Replace this with your real tests.
   test('it works', async function (assert) {
     await this.application.boot();
 
