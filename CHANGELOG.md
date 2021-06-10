@@ -2,10 +2,12 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [0.0.2](https://github.com/chrismllr/ember-validation-state/compare/0.0.2...0.0.2)
+#### [0.1.0](https://github.com/chrismllr/ember-validation-state/compare/0.0.2...0.1.0)
 
-> 14 September 2020
-
+- internal: add changelog + generation [`#6`](https://github.com/chrismllr/ember-validation-state/pull/6)
+- feat: add lazy validators initialization/ typescript types/ ember update [`#17`](https://github.com/chrismllr/ember-validation-state/pull/17)
+- Bump node-fetch from 2.6.0 to 2.6.1 [`#4`](https://github.com/chrismllr/ember-validation-state/pull/4)
+- Bump elliptic from 6.5.2 to 6.5.3 [`#3`](https://github.com/chrismllr/ember-validation-state/pull/3)
 - feat: format using prettier [`#2`](https://github.com/chrismllr/ember-validation-state/pull/2)
 - internal: run CI via github actions [`#1`](https://github.com/chrismllr/ember-validation-state/pull/1)
 
