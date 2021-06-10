@@ -3,7 +3,7 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import validationState, { validate } from 'ember-validation-state';
 
-module('Integration | Decorator | formValidation', function (hooks) {
+module('Integration | Decorator | validationState', function (hooks) {
   setupApplicationTest(hooks);
 
   test('returns a state object, which has a falsey `isValid` value if one key fails any of its validations', function (assert) {
@@ -18,6 +18,28 @@ module('Integration | Decorator | formValidation', function (hooks) {
       email = null;
 
       @validationState(validations) validState;
+    }
+
+    this.owner.register('service:validated', ValidatedService);
+    const svc = this.owner.lookup('service:validated');
+
+    assert.equal(svc.validState.isValid, false);
+  });
+
+  test('can pass a lazy "thunk" for validator initialization', function (assert) {
+    class ValidatedService extends Service {
+      email = null;
+
+      @validationState((component) => component.validations) validState;
+
+      get validations() {
+        return {
+          email: [
+            validate('presence', { presence: true }),
+            validate('format', { type: 'email' })
+          ]
+        };
+      }
     }
 
     this.owner.register('service:validated', ValidatedService);
