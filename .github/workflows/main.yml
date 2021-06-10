@@ -57,16 +57,16 @@ jobs:
       run: yarn test:ember
 
   try-scenarios:
-    name: ${{ matrix.ember-try-scenario }}
+    name: Compatibility
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 7
     needs: [test, lint]
-    
+
     strategy:
       matrix:
         ember-try-scenario:
           - ember-lts-3.12
-          - ember-lts-3.16
+          - ember-lts-3.24
           - ember-release
           - ember-beta
           - ember-canary
@@ -81,6 +81,4 @@ jobs:
     - name: install dependencies
       run: yarn install --frozen-lockfile
     - name: test
-      env:
-        EMBER_TRY_SCENARIO: ${{ matrix.ember-try-scenario }}
-      run: node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO
+      run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
