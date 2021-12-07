@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [1.0.0](https://github.com/chrismllr/ember-validation-state/compare/0.1.0...1.0.0)
+
+- compat: embroider support [`#22`](https://github.com/chrismllr/ember-validation-state/pull/22)
+- Bump handlebars from 4.7.6 to 4.7.7 [`#13`](https://github.com/chrismllr/ember-validation-state/pull/13)
+
 #### [0.1.0](https://github.com/chrismllr/ember-validation-state/compare/0.0.2...0.1.0)
+
+> 10 June 2021
 
 - internal: add changelog + generation [`#6`](https://github.com/chrismllr/ember-validation-state/pull/6)
 - feat: add lazy validators initialization/ typescript types/ ember update [`#17`](https://github.com/chrismllr/ember-validation-state/pull/17)
