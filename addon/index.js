@@ -94,7 +94,13 @@ export default function validationState(VALIDATOR_FNS) {
  */
 export function validate(eventName, context, model, attribute) {
   return function (value, messageSvc) {
-    const validOrContext = _validate(eventName, value, context, model, attribute);
+    const validOrContext = _validate(
+      eventName,
+      value,
+      context,
+      model,
+      attribute
+    );
 
     if (typeof validOrContext === 'boolean') {
       return [true];
