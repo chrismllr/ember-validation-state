@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [1.0.0](https://github.com/chrismllr/ember-validation-state/compare/0.1.0...1.0.0)
+#### [1.0.1](https://github.com/chrismllr/ember-validation-state/compare/1.0.0...1.0.1)
+
+- Fix "confirmation" validation by passing `model` and `attribute` arguments along to `validate` [`#27`](https://github.com/chrismllr/ember-validation-state/pull/27)
+
+### [1.0.0](https://github.com/chrismllr/ember-validation-state/compare/0.1.0...1.0.0)
+
+> 7 December 2021
 
 - compat: embroider support [`#22`](https://github.com/chrismllr/ember-validation-state/pull/22)
 - Bump handlebars from 4.7.6 to 4.7.7 [`#13`](https://github.com/chrismllr/ember-validation-state/pull/13)
