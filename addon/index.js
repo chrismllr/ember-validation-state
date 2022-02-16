@@ -92,9 +92,15 @@ export default function validationState(VALIDATOR_FNS) {
  * @param {object} context - the options hash passed along to ember-validators
  * @returns {function<*, MessageBuilder>: [isValid: boolean, message?: string]}
  */
-export function validate(eventName, context) {
+export function validate(eventName, context, model, attribute) {
   return function (value, messageSvc) {
-    const validOrContext = _validate(eventName, value, context);
+    const validOrContext = _validate(
+      eventName,
+      value,
+      context,
+      model,
+      attribute
+    );
 
     if (typeof validOrContext === 'boolean') {
       return [true];

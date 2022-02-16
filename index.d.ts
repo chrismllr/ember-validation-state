@@ -1,21 +1,21 @@
 type Validators = Record<string, any[]>;
 
-type AttributeValidation = {
+interface AttributeValidation {
   messages: string[];
   isValid: boolean;
-};
+}
 
 type AttrsType<T> = {
   [P in keyof T]: AttributeValidation;
 };
 
-export type ValidationState<A> = {
+export interface ValidationState<A> {
   isValid: boolean;
   attrs: AttrsType<A>;
-};
+}
 
-export function validate(any, any): any;
+export function validate(validatorName: any, context: any, model?: any, attribute?: string): any;
 
 export default function validationState(
   validators: Validators | ((ctx: any) => Validators)
-): PropertyDescriptor<ValidationState<typeof validators>>;
+): <T>(target: T, key: keyof T) => void;
